@@ -12,6 +12,14 @@ Note: This widget doesn't allow automatic rotation as of yet
 </p>
 
 
+## Example App
+
+<p>
+  <img width="205px" alt="Example gif" src="https://raw.githubusercontent.com/hardikb19/rotating-widgets/master/example/screenshots/example.gif"/>
+</p>
+
+
+
 ## Custom Usage
 There are several options that allow for more control:
 
