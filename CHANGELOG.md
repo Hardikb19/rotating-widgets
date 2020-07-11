@@ -1,3 +1,4 @@
-## [0.0.1] - TODO: Add release date.
+## [1.0.0] - [July 11, 2020].
 
-* TODO: Describe initial release.
+This is the initial release of the rotating_widgets package. This includes features such as
+- Customizing the rotation axis and angle of the rotating
