@@ -1,5 +1,5 @@
 name: rotating_widgets
-description: A new Flutter package project.
+description: Flutter Package to build rotating widgets with customizable option to allow rotation across X Axis and Y Axis along with a possibility to change the angle(radian) by which rotation occurs 
 version: 1.0.0
 homepage: https://github.com/Hardikb19/rotating-widgets
 
