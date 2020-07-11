@@ -1,8 +1,8 @@
 name: rotating_widgets
 description: A new Flutter package project.
-version: 0.0.1
+version: 1.0.0
 author:
-homepage:
+homepage: https://github.com/Hardikb19/rotating-widgets
 
 environment:
   sdk: ">=2.1.0 <3.0.0"
