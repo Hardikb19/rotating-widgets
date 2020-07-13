@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rotating_widgets/rotating_widgets.dart';
+import 'package:rotating_widgets/rotating_widget.dart';
 
 import 'dart:math' as math;
 
@@ -38,8 +38,8 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Container(
-          height: 420,
-          width: MediaQuery.of(context).size.width / 4 * 3,
+          height: 520,
+          width: MediaQuery.of(context).size.width / 5 * 4,
           child: RotatingWidgetsTest(child: Icon(Icons.thumb_up)),
         ),
       ),
@@ -60,12 +60,16 @@ class RotatingWidgetsTest extends StatefulWidget {
 class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
   bool boolX;
   bool boolY;
+  bool boolZ;
+  bool autoplay;
   double _angle;
 
   @override
   void initState() {
     boolX = true;
     boolY = true;
+    boolZ = false;
+    autoplay = false;
     _angle = 0.01;
     super.initState();
   }
@@ -73,7 +77,7 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(30.0),
+      padding: EdgeInsets.all(10.0),
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
@@ -89,32 +93,39 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
         ],
         color: Colors.white,
       ),
-      width: MediaQuery.of(context).size.width / 3 * 2,
-      height: 400.0,
+      width: MediaQuery.of(context).size.width,
+      height: 500.0,
       child: Center(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: <Widget>[
-            SizedBox(
-                height: 200.0,
-                width: 200.0,
-                child: RotatingWidgets(
-                  child: CircleAvatar(radius: 80, child: widget.child),
-                  angleRadian: _angle,
-                  rotateX: boolX,
-                  rotateY: boolY,
-                )),
-            SizedBox(
-              height: 40,
+            Container(
+              padding: EdgeInsets.all(20),
+              color: Color.fromRGBO(240, 240, 240, 1),
+              child: Center(
+                child: SizedBox(
+                    height: 200.0,
+                    width: 200.0,
+                    child: RotatingWidget(
+                      child: CircleAvatar(radius: 80, child: widget.child),
+                      angleRadianX: _angle,
+                      rotateX: boolX,
+                      rotateY: boolY,
+                      angleRadianY: _angle*2,
+                      angleRadianZ: _angle*4,
+                      autoplay: autoplay,
+                      duration: Duration(milliseconds: 1),
+                      rotateZ: boolZ,
+                    )),
+              ),
             ),
             SizedBox(
-              height: 80,
+              height: 60,
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   GestureDetector(
                     onTap: () {
-                      print('tapX');
                       setState(() {
                         boolX = !boolX;
                       });
@@ -122,7 +133,7 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
                     child: Container(
                       margin: EdgeInsets.all(4),
                       child: CircleAvatar(
-                        radius: 30.0,
+                        radius: 25.0,
                         backgroundColor: (boolX) ? Colors.blue : Colors.red,
                         child: Text('X'),
                       ),
@@ -130,7 +141,7 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      print('tapY');
+                      //print('tapY');
                       setState(() {
                         boolY = !boolY;
                       });
@@ -138,45 +149,86 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
                     child: Container(
                       margin: EdgeInsets.all(4),
                       child: CircleAvatar(
-                        radius: 30.0,
+                        radius: 25.0,
                         backgroundColor: (boolY) ? Colors.blue : Colors.red,
                         child: Text('Y'),
                       ),
                     ),
                   ),
-                  (boolX || boolY)
-                      ? Container(
-                          width: 80,
-                          height: 60,
-                          margin: EdgeInsets.all(4),
-                          child: TextField(
-                            decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                focusedBorder: OutlineInputBorder(),
-                                enabledBorder: OutlineInputBorder(),
-                                hintText: _angle.toString()),
-                            keyboardType: TextInputType.numberWithOptions(
-                                decimal: true, signed: true),
-                            onChanged: (val) {
-                              print(val);
-                              if (val == '') {
-                                setState(() {
-                                  _angle = 0;
-                                });
-                                return;
-                              }
-                              double value = double.parse(val) % math.pi;
-                              setState(() {
-                                _angle = value;
-                              });
-                              print(_angle);
-                            },
-                          ),
-                        )
-                      : SizedBox.shrink()
                 ],
               ),
-            )
+            ),
+            SizedBox(
+              height: 60,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: <Widget>[
+                  GestureDetector(
+                    onTap: () {
+                      //print('tapZ');
+                      setState(() {
+                        boolZ = !boolZ;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(4),
+                      child: CircleAvatar(
+                        radius: 25.0,
+                        backgroundColor: (boolZ) ? Colors.blue : Colors.red,
+                        child: Text('Z'),
+                      ),
+                    ),
+                  ),
+                  GestureDetector(
+                    onTap: () {
+                      setState(() {
+                        autoplay = !autoplay;
+                      });
+                    },
+                    child: Container(
+                      margin: EdgeInsets.all(4),
+                      child: CircleAvatar(
+                        radius: 25.0,
+                        backgroundColor: (autoplay) ? Colors.blue : Colors.red,
+                        child: Icon(Icons.play_arrow),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            (boolX || boolY || boolZ)
+                ? Container(
+                    width: 90,
+                    height: 50,
+                    margin: EdgeInsets.all(4),
+                    child: TextField(
+                      textAlign: TextAlign.center,
+                      textAlignVertical: TextAlignVertical.center,
+                      decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          focusedBorder: OutlineInputBorder(),
+                          enabledBorder: OutlineInputBorder(),
+                          hintText: _angle.toString()),
+                      keyboardType: TextInputType.numberWithOptions(
+                          decimal: true, signed: true),
+                      onChanged: (val) {
+                        //print(val);
+                        if (val == '') {
+                          setState(() {
+                            _angle = 0;
+                          });
+                          return;
+                        }
+                        double value = double.parse(val) % math.pi;
+                        setState(() {
+                          _angle = value;
+                        });
+                        //print(_angle);
+                      },
+                    ),
+                  )
+                : SizedBox.shrink()
           ],
         ),
       ),
