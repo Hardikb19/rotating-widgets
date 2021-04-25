@@ -1,3 +1,5 @@
+library rotating_widgets;
+
 import 'dart:async';
 
 import 'package:flutter/material.dart';
