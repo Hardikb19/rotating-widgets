@@ -1,10 +1,7 @@
-library rotating_widgets;
-
 import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-// ignore: must_be_immutable
 class RotatingWidget extends StatefulWidget {
   /// `RotatingWidget` with customizable option to allow rotation across `X-Axis`, `Y-Axis` and `Z-axis`
   /// change the `angle(in radian)` by which rotation along each axis occurs.
@@ -24,68 +21,67 @@ class RotatingWidget extends StatefulWidget {
   /// Rotation occurs only on X-Axis on `autoplay`
   ///
   RotatingWidget(
-      {@required this.child,
-      this.rotateX = true,
-      this.rotateY = true,
-      this.rotateZ = false,
-      this.autoplay = false,
-      this.duration = const Duration(seconds: 1),
-      this.angleRadianX = 0.01,
-      this.angleRadianY = 0.01,
-      this.angleRadianZ = 0.01})
-      : assert(child != null);
+      { required this.child,
+        this.rotateX = true,
+        this.rotateY = true,
+        this.rotateZ = false,
+        this.autoplay = false,
+        this.duration = const Duration(seconds: 1),
+        this.angleRadianX = 0.01,
+        this.angleRadianY = 0.01,
+        this.angleRadianZ = 0.01});
 
   /// [child] refers the `widget` being turned into a rotate-able widget
-  Widget child;
+  final Widget child;
 
   /// [rotateX] is a [boolean] for whether the widget should rotate around X-Axis
   /// `NOTE:` if [autoplay] is [true], manual rotation will be disabled
   ///
   /// But user can use these flags to limit rotation axis on `autoplay` as well
 
-  bool rotateX;
+  final bool rotateX;
 
   /// [rotateY] is a [boolean] for whether the widget should rotate around Y-Axis
   /// `NOTE:` if [autoplay] is [true], manual rotation will be disabled
   ///
   /// But user can use these flags to limit rotation axis on `autoplay` as well
-  bool rotateY;
+  final bool rotateY;
 
   /// [rotateZ] is a [boolean] for whether the widget should rotate around Z-Axis
   /// `NOTE:` if [autoplay] is [true], manual rotation will be disabled
   ///
   /// But user can use these flags to limit rotation axis on `autoplay` as well
-  bool rotateZ;
+  final bool rotateZ;
 
   /// [autoplay] is a [boolean] to check whether widget should rotate automatically or not
   ///
   /// Autoplay is limited to axis allowed by the user, i.e. rotation along Axis depends on `rotateX`,`rotateY`,`rotateZ`
   ///
   /// `NOTE:` if [autoplay] is [true], manual rotation will be disabled
-  bool autoplay;
+  final bool autoplay;
 
   /// The [angleRadianX] refers to angle by which widget turns across X-Axis, per unit [Offset] along that axis
   /// if [autoplay] is false, or per unit [duration] is autoplay is true
-  double angleRadianX;
+  final double angleRadianX;
 
   /// The [angleRadianY] refers to angle by which widget turns across Y-Axis, per unit [Offset] along that axis
   /// if [autoplay] is false, or per unit [duration] is autoplay is true
-  double angleRadianY;
+  final double angleRadianY;
 
   /// The [angleRadianZ] refers to angle by which widget turns across Z-Axis, per unit [Offset] along both axis
   /// if [autoplay] is false, or per unit [duration] is autoplay is true
-  double angleRadianZ;
+  final double angleRadianZ;
 
   /// The [duration] refers to the duration between which said [widget] rotates around individual axis by said angle
-  Duration duration;
+  final Duration duration;
 
   @override
   _RotatingWidgetState createState() => _RotatingWidgetState();
 }
 
 class _RotatingWidgetState extends State<RotatingWidget> {
-  Offset _offset;
-  Offset _animationOffset;
+  late Offset _offset;
+  late Offset _animationOffset;
 
   @override
   void initState() {
@@ -131,11 +127,10 @@ class _RotatingWidgetState extends State<RotatingWidget> {
 
 // ignore: must_be_immutable
 class _TransformWidgets extends StatefulWidget {
-  _TransformWidgets({@required this.child}) {
-    this.dispX = 0;
-    this.dispY = 0;
+  _TransformWidgets({required this.child}):
+    this.dispX = 0,
+    this.dispY = 0,
     this.dispZ = 0;
-  }
 
   Widget child;
   double dispX;
