@@ -61,7 +61,7 @@ class _RotatingWidgetsTestState extends State<RotatingWidgetsTest> {
   late bool boolY;
   late bool boolZ;
   late double _angle;
-  RotatingWidgetsController rwc = RotatingWidgetsController(autoplayEnabled: true);
+  RotatingWidgetsController rwc = RotatingWidgetsController(autoplayEnabled: false);
 
   @override
   void initState() {
