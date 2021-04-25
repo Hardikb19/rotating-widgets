@@ -2,7 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:rotating_widget_test/rotating_widgets.dart';
+import 'package:rotating_widgets/rotating_widgets.dart';
 
 void main() => runApp(MyApp());
 
