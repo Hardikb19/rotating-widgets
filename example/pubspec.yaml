@@ -1,7 +1,7 @@
 name: rotating_widget_test
 description: Example code to test package rotating_widgets 
 
-version: 1.0.0+1
+version: 1.0.2
 publish_to: 'none'
 
 environment:
