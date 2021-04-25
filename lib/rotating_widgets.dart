@@ -22,7 +22,7 @@ class RotatingWidget extends StatefulWidget {
   ///
   /// Rotation occurs only on X-Axis on `autoplay`
   ///
-  RotatingWidget(
+  const RotatingWidget(
       { required this.child,
         this.rotateX = true,
         this.rotateY = true,
